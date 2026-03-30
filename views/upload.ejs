@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Recipe</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+
+          
+            background: url('https://images.unsplash.com/photo-1543353071-873f17a7a088') no-repeat center center/cover;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.4);
+            z-index: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            width: 900px;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        input[type="file"] {
+            background: white;
+            color: black;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff4757;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h2> Upload Recipe</h2>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+
+<div class="row">
+
+    <div class="section">
+        <h3>Ingredients</h3>
+
+        <input type="text" name="ingredients" placeholder="Ingredient 1">
+        <input type="text" name="ingredients" placeholder="Ingredient 2">
+        <input type="text" name="ingredients" placeholder="Ingredient 3">
+        <input type="text" name="ingredients" placeholder="Ingredient 4">
+        <input type="text" name="ingredients" placeholder="Ingredient 5">
+    </div>
+
+  
+    <div class="section">
+        <h3>Recipe Name</h3>
+        <input type="text" name="title" placeholder="Enter recipe name">
+
+        <h3>Process</h3>
+        <textarea name="instructions" rows="12" placeholder="Write cooking process..."></textarea>
+    </div>
+
+  
+    <div class="section">
+        <h3>Recipe Image</h3>
+        <input type="file" name="image">
+
+        <p style="font-size:12px; color:#ddd;">
+            Upload image
+        </p>
+    </div>
+
+</div>
+
+<br>
+
+<button> Upload Recipe</button>
+
+</form>
+
+<a href="/search" class="back"> Back to Search</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

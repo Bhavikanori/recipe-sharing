@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Recipes</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+
+            background: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061') no-repeat center center/cover;
+            position: relative;
+        }
+
+   
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.4);
+            z-index: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 350px;
+            color: white;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 70%;
+            border-radius: 8px;
+            border: none;
+            margin-right: 5px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ff4757;
+        }
+
+        select {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2> Search Recipes</h2>
+
+
+    
+        <select onchange="goToRecipe(this.value)">
+            <option value="">Select Recipe</option>
+            <% recipes.forEach(r => { %>
+                <option value="<%= r.id %>"><%= r.title %></option>
+            <% }) %>
+        </select>
+
+      
+        <a href="/upload"></a>
+
+    </div>
+
+</div>
+
+<script>
+function goToRecipe(id) {
+    if (id) {
+        window.location.href = "/recipe/" + id;
+    }
+}
+</script>
+
+</body>
+</html>
