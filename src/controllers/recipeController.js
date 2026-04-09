@@ -2,20 +2,26 @@ const express = require('express');
 const router = express.Router();
 const service = require('../services/recipeService');
 const multer = require('multer');
+const path = require('path');
 
-
+// Multer config (FIXED)
 const storage = multer.diskStorage({
-    destination: 'uploads/',
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, '../../uploads'));
+    },
     filename: (req, file, cb) => {
         cb(null, Date.now() + '-' + file.originalname);
     }
 });
+
 const upload = multer({ storage });
 
+// Routes
 
 router.get('/', (req, res) => {
     res.redirect('/search');
 });
+
 router.get('/search', async (req, res) => {
     let recipes;
 
@@ -33,14 +39,14 @@ router.get('/recipe/:id', async (req, res) => {
         const recipe = await service.getById(req.params.id);
 
         if (!recipe) {
-            return res.status(404).send("Recipe not found");  // ✅ FIX
+            return res.status(404).send("Recipe not found");
         }
 
         res.render('recipe', { recipe });
 
     } catch (error) {
-        console.error("Error fetching recipe:", error);
-        res.status(500).send("Internal Server Error");
+        console.error(error);
+        res.status(500).send("Server error");
     }
 });
 
@@ -58,9 +64,9 @@ router.post('/upload', upload.single('image'), async (req, res) => {
 
     const data = {
         title: req.body.title,
-        ingredients: ingredients,
-        instructions: instructions,
-        imagePath: req.file ? req.file.path : null
+        ingredients,
+        instructions,
+        imagePath: req.file ? req.file.filename : null
     };
 
     await service.save(data);

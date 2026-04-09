@@ -7,7 +7,7 @@ services:
     container_name: mysql-container
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: kavya@2006
+      MYSQL_ROOT_PASSWORD: Sam_aira1922
       MYSQL_DATABASE: recipes_db
     ports:
       - "3000:3000"
@@ -15,7 +15,7 @@ services:
       - mysql-data:/var/lib/mysql
 
   app:
-    image: kavyanjali14/recipes:latest
+    image: noribhavika/recipes:latest
     container_name: recipe-container
     restart: always
     ports:
@@ -25,7 +25,7 @@ services:
     environment:
       DB_HOST: mysql
       DB_USER: root
-      DB_PASSWORD: kavya@2006
+      DB_PASSWORD: Sam_aira1922
       DB_NAME: recipes_db
 
 volumes:
